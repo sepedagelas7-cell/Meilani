@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BTS Birthday Card 💜</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="custom-cursor"></div>
+<div class="cursor-trail"></div>
+
+  <a href="landing.html" class="back-home">
+  Back
+</a>
+
+<div class="bg-image"></div>
+
+<canvas id="canvas"></canvas>
+
+<div class="card">
+
+  <!-- SLIDE 1 -->  
+  <div class="slide active" id="slide1">
+    <div class="content">
+      <h1>ENTER YOUR PIN</h1>
+
+      <div class="pin-box">
+        <input type="password" maxlength="1" onkeydown="return false;">
+        <input type="password" maxlength="1" onkeydown="return false;">
+        <input type="password" maxlength="1" onkeydown="return false;">
+        <input type="password" maxlength="1" onkeydown="return false;">
+      </div>
+
+      <br>
+
+      <div class="keyboard">
+        <button onclick="pressNum(1)">1</button>
+        <button onclick="pressNum(2)">2</button>
+        <button onclick="pressNum(3)">3</button><br>
+        <button onclick="pressNum(4)">4</button>
+        <button onclick="pressNum(5)">5</button>
+        <button onclick="pressNum(6)">6</button><br>
+        <button onclick="pressNum(7)">7</button>
+        <button onclick="pressNum(8)">8</button>
+        <button onclick="pressNum(9)">9</button><br>
+        <button onclick="deleteNum()">⌫</button>
+        <button onclick="pressNum(0)">0</button>
+        <button onclick="checkPin()">✔</button>
+      </div>
+
+      <p id="errorMsg"></p>
+          <p class="typewriter">Clue : Your Birthday Date</p>
+    </div>
+
+  </div>
+
+  <!-- SLIDE 2 -->
+  <div class="slide" id="slide2">
+    <div class="content">
+      <h1>🎂 Happy Birthday</h1>
+      <img src="birthday.gif">
+      <p class="typewriter">Semoga hari ini penuh kebahagiaan 💜</p>
+    </div>
+    <div class="nav-btns">
+      <button class="btn" onclick="prevSlide()">⬅</button>
+      <button class="btn" onclick="nextSlide()">➡</button>
+    </div>
+  </div>
+
+  <!-- SLIDE 3 -->
+  <div class="slide" id="slide3">
+    <div class="content">
+      <h1>✨ Doa</h1>
+      <img src="hope.gif">
+      <p class="typewriter">Sehat, bahagia, dan sukses selalu 💜</p>
+    </div>
+    <div class="nav-btns">
+      <button class="btn" onclick="prevSlide()">⬅</button>
+      <button class="btn" onclick="nextSlide()">➡</button>
+    </div>
+  </div>
+
+  <!-- SLIDE 4 -->
+  <div class="slide" id="slide4">
+    <div class="content">
+      <h1>💜 Special</h1>
+      <img src="foto.jpg">
+      <p class="typewriter">Kamu adalah seseorang yang sangat berarti</p>
+    </div>
+    <div class="nav-btns">
+      <button class="btn" onclick="prevSlide()">⬅</button>
+      <button class="btn" onclick="nextSlide()">➡</button>
+    </div>
+  </div>
+
+  <!-- SLIDE 5 -->
+  <div class="slide" id="slide5">
+    <div class="content">
+      <h1>💜 Terima Kasih</h1>
+      <img src="thanks.gif">
+      <p class="typewriter">Terima kasih sudah ada 💜</p>
+    </div>
+    <div class="nav-btns" style="justify-content:center;">
+      <button class="btn" onclick="prevSlide()">⬅</button>
+      
+    </div>
+  </div>
+
+</div>
+
+<button id="musicToggle" onclick="toggleMusic()">▶ <span id="musicText">Play Music</span></button>
+
+<script src="script.js"></script>
+</body>
+</html>

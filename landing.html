@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Special Gift 💜</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  height:100vh;
+  overflow:hidden;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+
+  font-family:'Dancing Script', cursive;
+  text-align:center;
+  color:white;
+
+  background:linear-gradient(-45deg,#0f0c29,#302b63,#24243e,#ff4fd8);
+  background-size:400% 400%;
+  animation:bgMove 12s ease infinite;
+  background: url("BG-BTS.jpg") center/cover no-repeat;
+
+  transition:1s;
+}
+
+/* BACKGROUND ANIMATION */
+@keyframes bgMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* FADE OUT */
+body.fade-out{
+  opacity:0;
+  transform:scale(1.05);
+}
+
+/* CARD */
+.card{
+  width:90%;
+  max-width:800px;
+
+  padding:40px 30px;
+  border-radius:30px;
+
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(12px);
+
+  box-shadow:
+  0 0 30px rgba(255,255,255,0.1),
+  0 0 60px rgba(255,79,216,0.2);
+
+  animation:fadeUp 1.5s ease;
+  position:relative;
+z-index:2;
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(40px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* TITLE */
+h1{
+  font-size:60px;
+  margin-bottom:20px;
+  line-height:1.4;
+
+  color:#ffffff;
+  font-weight:800;
+  letter-spacing:1px;
+
+  text-shadow:
+    0 0 5px rgba(255,255,255,0.9),
+    0 0 10px rgba(255,255,255,0.8),
+    0 0 20px rgba(255,79,216,0.9),
+    0 0 35px rgba(255,79,216,0.7),
+    0 0 50px rgba(122,92,255,0.6),
+    0 0 80px rgba(255,255,255,0.3);
+}
+
+
+/* TEXT */
+p{
+  font-size:22px;
+  line-height:1.6;
+  opacity:0.95;
+}
+
+/* GIFT */
+.gift{
+  font-size:180px;
+  margin-top:30px;
+  cursor:pointer;
+
+  animation:float 2.5s ease-in-out infinite;
+
+  transition:0.4s;
+
+  filter:drop-shadow(0 0 20px rgba(255,255,255,0.6));
+}
+
+.gift:hover{
+  transform:scale(1.15) rotate(8deg);
+
+  filter:
+  drop-shadow(0 0 20px #fff)
+  drop-shadow(0 0 40px #ff9cf5)
+  drop-shadow(0 0 60px #ff4fd8);
+}
+
+@keyframes float{
+  0%,100%{
+    transform:translateY(0);
+  }
+  50%{
+    transform:translateY(-15px);
+  }
+}
+
+/* TAP TEXT */
+.tap{
+  margin-top:15px;
+  font-size:24px;
+  animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+  0%{opacity:0.5}
+  50%{opacity:1}
+  100%{opacity:0.5}
+}
+
+/* BUTTON */
+.btn{
+  margin-top:25px;
+
+  padding:14px 28px;
+  border:none;
+  border-radius:16px;
+
+  font-size:18px;
+  font-weight:bold;
+
+  color:white;
+  cursor:pointer;
+
+  background:linear-gradient(135deg,#ff4fd8,#7a5cff);
+
+  transition:0.3s;
+}
+
+.btn:hover{
+  transform:scale(1.08);
+
+  box-shadow:
+  0 0 20px rgba(255,79,216,0.6),
+  0 0 40px rgba(122,92,255,0.5);
+}
+
+/* CANVAS */
+canvas{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:999;
+}
+
+/* HEARTS */
+.heart{
+  position:fixed;
+  color:#ff9cf5;
+  font-size:20px;
+  animation:heartFloat linear forwards;
+  opacity:0.7;
+}
+
+@keyframes heartFloat{
+  from{
+    transform:translateY(100vh) scale(0.5);
+    opacity:0;
+  }
+
+  to{
+    transform:translateY(-10vh) scale(1.5);
+    opacity:1;
+  }
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+  h1{
+    font-size:28px;
+  }
+
+  p{
+    font-size:18px;
+  }
+
+  .gift{
+    font-size:130px;
+  }
+
+  .tap{
+    font-size:18px;
+  }
+}
+
+/* HIDE DEFAULT CURSOR */
+body{
+  cursor:none;
+}
+
+/* CUSTOM CURSOR */
+.custom-cursor{
+  position:fixed;
+  top:0;
+  left:0;
+
+  width:32px;
+  height:32px;
+
+  border-radius:50%;
+
+  pointer-events:none;
+  z-index:99999;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  transform:translate(-50%,-50%);
+
+  transition:
+    transform 0.08s linear,
+    opacity 0.3s;
+
+  mix-blend-mode:screen;
+}
+
+.custom-cursor::before{
+  content:"💜";
+  font-size:26px;
+
+  filter:
+    drop-shadow(0 0 6px #ff4fd8)
+    drop-shadow(0 0 12px #ff9cf5);
+
+  animation:cursorPulse 1.2s infinite ease-in-out;
+}
+
+/* TRAIL */
+.cursor-trail{
+  position:fixed;
+  top:0;
+  left:0;
+
+  width:12px;
+  height:12px;
+
+  border-radius:50%;
+
+  background:rgba(255,79,216,0.45);
+
+  pointer-events:none;
+  z-index:99998;
+
+  transform:translate(-50%,-50%);
+
+  filter:blur(3px);
+
+  transition:
+    transform 0.18s ease-out,
+    opacity 0.4s;
+}
+
+/* HOVER EFFECT */
+a:hover ~ .custom-cursor,
+button:hover ~ .custom-cursor{
+  transform:translate(-50%,-50%) scale(1.5);
+}
+
+/* ANIMATION */
+@keyframes cursorPulse{
+  0%,100%{
+    transform:scale(1);
+  }
+
+  50%{
+    transform:scale(1.25);
+  }
+}
+
+/* HIDE ALL DEFAULT CURSORS */
+*{
+  cursor:none !important;
+}
+
+/* MOBILE DISABLE */
+@media(max-width:768px){
+
+  body{
+    cursor:auto;
+  }
+
+  .custom-cursor,
+  .cursor-trail{
+    display:none;
+  }
+}
+
+@media(max-width:768px){
+
+  *{
+    cursor:auto !important;
+  }
+
+  .custom-cursor,
+  .cursor-trail{
+    display:none;
+  }
+}
+
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  z-index:0;
+}
+
+</style>
+</head>
+
+<body>
+  
+<div class="custom-cursor"></div>
+<div class="cursor-trail"></div>
+
+<div class="card">
+
+  <h1>
+    💜 <br>
+    Dear Meilani Destriani Lubis 
+  </h1>
+
+  <p>
+    Good News 
+    <br>A special gift is waiting for you <br><br>
+
+    Carefully prepared with love, positive vibes,
+    and a little bit of magic <br><br>
+
+    Because you deserve something truly special 💌
+  </p>
+
+  <div class="gift" onclick="openGift()">
+    🎁
+  </div>
+
+  <div class="tap">
+    Tap The Gift Box
+  </div>
+
+
+</div>
+
+<!-- MUSIC -->
+<audio id="bgm" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- CONFETTI -->
+<canvas id="confetti"></canvas>
+
+<script>
+
+/* ================= MUSIC ================= */
+
+const bgm = document.getElementById("bgm");
+
+/* ================= CONFETTI ================= */
+
+const canvas = document.getElementById("confetti");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+let pieces = [];
+
+class Confetti{
+  constructor(){
+
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+
+    this.size = Math.random() * 8 + 4;
+
+    this.speedX = (Math.random() - 0.5) * 8;
+    this.speedY = (Math.random() - 0.5) * 8;
+
+    this.color = `hsl(${Math.random()*360},100%,60%)`;
+
+    this.life = 120;
+  }
+
+  update(){
+
+    this.x += this.speedX;
+    this.y += this.speedY;
+
+    this.speedY += 0.15;
+
+    this.life--;
+
+    this.draw();
+  }
+
+  draw(){
+
+    ctx.fillStyle = this.color;
+
+    ctx.fillRect(
+      this.x,
+      this.y,
+      this.size,
+      this.size
+    );
+  }
+}
+
+function explodeConfetti(){
+
+  pieces = [];
+
+  for(let i=0;i<300;i++){
+    pieces.push(new Confetti());
+  }
+
+  animate();
+}
+
+function animate(){
+
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  pieces.forEach((p,index)=>{
+
+    p.update();
+
+    if(p.life <= 0){
+      pieces.splice(index,1);
+    }
+  });
+
+  if(pieces.length > 0){
+    requestAnimationFrame(animate);
+  }
+}
+
+/* ================= FLOATING HEARTS ================= */
+
+function createHeart(){
+
+  const heart = document.createElement("div");
+
+  heart.classList.add("heart");
+
+  heart.innerHTML = "💜";
+
+  heart.style.left = Math.random() * 100 + "vw";
+
+  heart.style.animationDuration =
+    (Math.random() * 3 + 4) + "s";
+
+  heart.style.fontSize =
+    (Math.random() * 20 + 15) + "px";
+
+  document.body.appendChild(heart);
+
+  setTimeout(()=>{
+    heart.remove();
+  },7000);
+}
+
+setInterval(createHeart,500);
+
+/* ================= OPEN GIFT ================= */
+
+function openGift(){
+
+  bgm.play();
+
+  explodeConfetti();
+
+  document.body.classList.add("fade-out");
+
+  setTimeout(()=>{
+
+    /*
+      GANTI LINK DI BAWAH
+      contoh:
+      window.location.href = "surprise.html";
+    */
+
+    window.location.href = "index.html";
+
+  },1800);
+}
+
+/* CUSTOM CURSOR */
+
+const cursor = document.querySelector(".custom-cursor");
+const trail = document.querySelector(".cursor-trail");
+
+let mouseX = 0;
+let mouseY = 0;
+
+let trailX = 0;
+let trailY = 0;
+
+document.addEventListener("mousemove",(e)=>{
+
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+
+  cursor.style.left = mouseX + "px";
+  cursor.style.top = mouseY + "px";
+});
+
+function animateTrail(){
+
+  trailX += (mouseX - trailX) * 0.15;
+  trailY += (mouseY - trailY) * 0.15;
+
+  trail.style.left = trailX + "px";
+  trail.style.top = trailY + "px";
+
+  requestAnimationFrame(animateTrail);
+}
+
+animateTrail();
+
+/* CLICK EFFECT */
+document.addEventListener("click",()=>{
+
+  cursor.animate([
+    { transform:"translate(-50%,-50%) scale(1)" },
+    { transform:"translate(-50%,-50%) scale(1.8)" },
+    { transform:"translate(-50%,-50%) scale(1)" }
+  ],{
+    duration:300
+  });
+
+});
+
+/* CURSOR HOVER EFFECT */
+
+const hoverItems = document.querySelectorAll(
+  "button, a, .btn"
+);
+
+hoverItems.forEach(item=>{
+
+  item.addEventListener("mouseenter",()=>{
+
+    cursor.style.transform =
+      "translate(-50%,-50%) scale(1.8)";
+  });
+
+  item.addEventListener("mouseleave",()=>{
+
+    cursor.style.transform =
+      "translate(-50%,-50%) scale(1)";
+  });
+
+});
+
+const card = document.querySelector(".card");
+
+document.addEventListener("mousemove",(e)=>{
+
+  let x = (window.innerWidth/2 - e.clientX) * 0.02;
+  let y = (window.innerHeight/2 - e.clientY) * 0.02;
+
+  card.style.transform = `translate(${x}px, ${y}px)`;
+});
+</script>
+
+</body>
+</html>
