@@ -69,25 +69,24 @@ function clearPin(){
 clearPin();
 
 /* MUSIC */
-let audio = new Audio("musik.mp3");
-audio.loop = true;
-let playing = false;
+const music = document.getElementById("bgMusic");
+const btn = document.getElementById("musicToggle");
 
-function toggleMusic(){
-  const btn = document.getElementById("musicToggle");
+btn.addEventListener("click", () => {
 
-  if(playing){
-    audio.pause();
-    playing = false;
-    btn.classList.remove("beat");
-    btn.innerHTML = "▶ Play Music";
+  if (music.paused) {
+    music.play();
+    btn.classList.add("playing");
   } else {
-    audio.play();
-    playing = true;
-    btn.classList.add("beat");
-    btn.innerHTML = "⏸ Pause Music";
+    music.pause();
+    btn.classList.remove("playing");
   }
-}
+
+});
+
+/* sinkron jika user pause dari sistem */
+music.onplay = () => btn.classList.add("playing");
+music.onpause = () => btn.classList.remove("playing");
 
 /* CANVAS HEART + STAR */
 const canvas = document.getElementById("canvas");
