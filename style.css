@@ -280,36 +280,7 @@ flex: 1 1 120px;
     0 0 40px rgba(122,92,255,0.4);
 }
 
-@media (max-width: 768px) {
 
-  #musicToggle {
-    width:46px;
-    height:46px;
-    top:12px;
-    right:12px;
-
-    box-shadow:
-      0 0 8px rgba(255,79,216,0.25),
-      0 0 18px rgba(122,92,255,0.15);
-
-    animation:floatBtnMobile 3s ease-in-out infinite;
-  }
-
-  .vinyl {
-    width:32px;
-    height:32px;
-  }
-
-  .vinyl::after {
-    width:8px;
-    height:8px;
-  }
-}
-
-@keyframes floatBtnMobile {
-  0%,100% { transform:translateY(0) scale(1); }
-  50% { transform:translateY(-4px) scale(1); }
-}
 
 /* ===== RESPONSIVE FIX ===== */
 @media (max-width: 480px) {
