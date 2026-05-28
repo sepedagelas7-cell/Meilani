@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Special Gift 💜</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  height:100vh;
+  overflow:hidden;
+  font-family:'Dancing Script', cursive;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:url("BG-BTS.jpg") center/cover no-repeat;
+  color:white;
+}
+
+/* overlay */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+}
+
+/* START SCREEN */
+.start{
+  position:absolute;
+  z-index:10;
+  text-align:center;
+}
+
+.start button{
+  font-size:140px; /* 🔥 diperbesar */
+  border:none;
+  background:none;
+  cursor:pointer;
+
+  filter:drop-shadow(0 0 15px #ff4fd8);
+
+  animation:giftFloat 2s ease-in-out infinite;
+  transition:0.3s;
+}
+
+/* hover effect */
+.start button:hover{
+  transform:scale(1.25) rotate(10deg);
+  filter:
+    drop-shadow(0 0 25px #ff4fd8)
+    drop-shadow(0 0 40px #ff9cf5);
+}
+
+@keyframes giftFloat{
+  0%,100%{
+    transform:translateY(0) scale(1);
+  }
+  50%{
+    transform:translateY(-18px) scale(1.08);
+  }
+}
+
+.start p{
+  margin-top:10px;
+  font-size:18px;
+}
+
+/* CARD */
+.card{
+  position:relative;
+  z-index:5;
+  width:90%;
+  max-width:500px;
+  padding:30px;
+  border-radius:22px;
+  background:rgba(255,255,255,0.12);
+  backdrop-filter:blur(12px);
+  text-align:center;
+
+  opacity:0;
+  transform:scale(0.8);
+  transition:0.6s ease;
+}
+
+.card.show{
+  opacity:1;
+  transform:scale(1);
+}
+
+h1{
+  font-size:40px;
+  text-shadow:0 0 15px #ff4fd8;
+}
+
+p{
+  font-size:18px;
+  margin-top:10px;
+  line-height:1.5;
+}
+
+img{
+  width:180px;
+  margin-top:15px;
+  border-radius:15px;
+  box-shadow:0 0 20px rgba(255,79,216,0.4);
+}
+
+/* GIFT ICON */
+.gift{
+  font-size:120px;
+  margin-top:20px;
+  cursor:pointer;
+  animation:float 2s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-15px)}
+}
+
+/* POPUP */
+.popup{
+  position:fixed;
+  inset:0;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  background:rgba(0,0,0,0.6);
+  z-index:100;
+}
+
+.popup-box{
+  background:rgba(255,255,255,0.12);
+  backdrop-filter:blur(12px);
+  padding:25px;
+  border-radius:20px;
+  text-align:center;
+}
+
+button{
+  margin-top:10px;
+  padding:8px 15px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+/* HEARTS */
+#hearts{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:2;
+}
+
+.heart{
+  position:absolute;
+  bottom:-40px;
+  animation:floatUp linear forwards;
+}
+
+@keyframes floatUp{
+  from{transform:translateY(0);opacity:0}
+  to{transform:translateY(-120vh);opacity:1}
+}
+
+/* CONFETTI */
+canvas{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:999;
+}
+
+.back-btn{
+  position:fixed;
+  top:20px;
+  left:20px;
+  z-index:200;
+
+  padding:10px 16px;
+  border-radius:12px;
+
+  text-decoration:none;
+  color:white;
+  font-size:14px;
+  font-weight:bold;
+
+  background:rgba(255,255,255,0.12);
+  backdrop-filter:blur(10px);
+
+  border:1px solid rgba(255,255,255,0.2);
+
+  box-shadow:
+    0 0 15px rgba(255,79,216,0.3),
+    0 0 25px rgba(122,92,255,0.2);
+
+  transition:0.3s;
+}
+
+.back-btn:hover{
+  transform:scale(1.08);
+  background:linear-gradient(135deg,#ff4fd8,#7a5cff);
+  box-shadow:
+    0 0 20px rgba(255,79,216,0.5),
+    0 0 40px rgba(122,92,255,0.4);
+}
+
+/* ================= CURSOR CUSTOM ================= */
+
+body{
+  cursor:none;
+}
+
+/* main cursor */
+.custom-cursor{
+  position:fixed;
+  top:0;
+  left:0;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:99999;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  transform:translate(-50%,-50%);
+  transition:transform 0.08s linear;
+}
+
+.custom-cursor::before{
+  content:"💜";
+  font-size:22px;
+
+  filter:
+    drop-shadow(0 0 8px #ff4fd8)
+    drop-shadow(0 0 15px #ff9cf5);
+
+  animation:cursorPulse 1.2s infinite ease-in-out;
+}
+
+/* trail */
+.cursor-trail{
+  position:fixed;
+  top:0;
+  left:0;
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:rgba(255,79,216,0.4);
+  pointer-events:none;
+  z-index:99998;
+  filter:blur(3px);
+  transform:translate(-50%,-50%);
+}
+
+/* animation pulse */
+@keyframes cursorPulse{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.25);}
+}
+/* MATIKAN SEMUA CURSOR DEFAULT */
+* {
+  cursor: none !important;
+}
+
+/* pastikan juga state klik tidak balik */
+*:active,
+*:hover,
+*:focus {
+  cursor: none !important;
+}
+
+</style>
+</head>
+
+<body>
+
+    <div class="custom-cursor"></div>
+<div class="cursor-trail"></div>
+
+    
+<a href="index.html" class="back-btn">Back</a>
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="musik.mp3 " type="audio/mpeg">
+</audio>
+
+<!-- START -->
+<div class="start" id="startScreen">
+  <button onclick="openCard()">🎁</button>
+  <p>Tap untuk membuka hadiah</p>
+</div>
+
+<!-- CARD -->
+<div class="card" id="card">
+
+  <h1>💜 보라해 💜</h1>
+
+  <p>
+   Tetap bersinar seperti bintang, dan semoga selalu bahagia
+  </p>
+
+  <img id="loveGif" src="https://media.tenor.com/dEN66mMlhB8AAAAi/i-love-you.gif">
+
+</div>
+
+
+<!-- HEARTS -->
+<div id="hearts"></div>
+
+<!-- CONFETTI -->
+<canvas id="confetti"></canvas>
+
+<script>
+// ================= MUSIC =================
+window.addEventListener("load", () => {
+  const music = document.getElementById("bgMusic");
+
+  music.play().catch(() => {
+    document.body.addEventListener("click", () => music.play(), { once:true });
+  });
+});
+
+
+// ================= OPEN CARD =================
+const startScreen = document.getElementById("startScreen");
+const card = document.getElementById("card");
+
+function openCard(){
+  startScreen.style.display = "none";
+  card.classList.add("show");
+
+  spawnHearts();
+  createConfetti(); // 🔥 CONFETTI SAAT START
+}
+
+
+// ================= HEARTS =================
+const hearts = document.getElementById("hearts");
+const icons = ["💜","✨","🌸","🎉","💖"];
+
+function spawnHearts(){
+  for(let i=0;i<15;i++){
+    const h = document.createElement("div");
+    h.className="heart";
+    h.innerHTML = icons[Math.floor(Math.random()*icons.length)];
+    h.style.left = Math.random()*100 + "vw";
+    h.style.fontSize = (Math.random()*25+18)+"px";
+    h.style.animationDuration = (Math.random()*5+4)+"s";
+    hearts.appendChild(h);
+    setTimeout(()=>h.remove(),8000);
+  }
+}
+
+
+// ================= POPUP =================
+function openPopup(){
+  document.getElementById("popup").style.display="flex";
+  createConfetti();
+}
+
+function closePopup(){
+  document.getElementById("popup").style.display="none";
+}
+
+
+// ================= CONFETTI =================
+const canvas = document.getElementById("confetti");
+const ctx = canvas.getContext("2d");
+
+canvas.width = innerWidth;
+canvas.height = innerHeight;
+
+window.addEventListener("resize",()=>{
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+});
+
+const iconsConfetti = ["💜","✨","🎉","💖","🌸"];
+let particles = [];
+
+class Confetti {
+  constructor(){
+    this.x = Math.random() * canvas.width;
+    this.y = -20;
+    this.size = Math.random() * 20 + 10;
+    this.speed = Math.random() * 3 + 2;
+    this.icon = iconsConfetti[Math.floor(Math.random()*iconsConfetti.length)];
+    this.opacity = 1;
+  }
+
+  update(){
+    this.y += this.speed;
+    this.opacity -= 0.004;
+  }
+
+  draw(){
+    ctx.globalAlpha = this.opacity;
+    ctx.font = this.size + "px Arial";
+    ctx.fillText(this.icon, this.x, this.y);
+    ctx.globalAlpha = 1;
+  }
+}
+
+function createConfetti(){
+  for(let i=0;i<80;i++){
+    particles.push(new Confetti());
+  }
+  animate();
+}
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  particles.forEach((p,i)=>{
+    p.update();
+    p.draw();
+
+    if(p.y > canvas.height || p.opacity <= 0){
+      particles.splice(i,1);
+    }
+  });
+
+  if(particles.length > 0){
+    requestAnimationFrame(animate);
+  }
+}
+
+// ================= CURSOR =================
+
+const cursor = document.querySelector(".custom-cursor");
+const trail = document.querySelector(".cursor-trail");
+
+let mouseX = 0;
+let mouseY = 0;
+
+let trailX = 0;
+let trailY = 0;
+
+// follow mouse
+document.addEventListener("mousemove", (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+
+  cursor.style.transform =
+    `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+});
+
+// smooth trail
+function animateTrail(){
+  trailX += (mouseX - trailX) * 0.12;
+  trailY += (mouseY - trailY) * 0.12;
+
+  trail.style.transform =
+    `translate(${trailX}px, ${trailY}px) translate(-50%, -50%)`;
+
+  requestAnimationFrame(animateTrail);
+}
+
+animateTrail();
+
+// click effect (pulse)
+document.addEventListener("click", () => {
+  cursor.animate([
+    { transform: `translate(${mouseX}px, ${mouseY}px) scale(1)` },
+    { transform: `translate(${mouseX}px, ${mouseY}px) scale(1.8)` },
+    { transform: `translate(${mouseX}px, ${mouseY}px) scale(1)` }
+  ], {
+    duration: 300
+  });
+});
+
+const loveGif = document.getElementById("loveGif");
+
+loveGif.addEventListener("click", (e) => {
+  e.stopPropagation(); // biar tidak trigger event lain
+  createConfetti();
+});
+
+let animating = false;
+
+function createConfetti(){
+  for(let i=0;i<50;i++){ // dikurangi biar ringan
+    particles.push(new Confetti());
+  }
+
+  if(!animating){
+    animating = true;
+    animate();
+  }
+}
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  particles = particles.filter(p => {
+    p.update();
+    p.draw();
+    return p.y <= canvas.height && p.opacity > 0;
+  });
+
+  if(particles.length > 0){
+    requestAnimationFrame(animate);
+  } else {
+    animating = false;
+  }
+}
+
+</script>
+
+</body>
+</html>
